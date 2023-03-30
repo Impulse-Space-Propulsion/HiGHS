@@ -598,13 +598,28 @@ else(FAST_BUILD)
         target_include_directories(doctest PRIVATE extern)
         target_link_libraries(doctest libhighs)
     endif()
+   
+    target_include_directories( libhighs
+        PUBLIC
+            $<INSTALL_INTERFACE:include/highs>
+        PRIVATE src
+    )
     
-    
-    install(TARGETS libhighs EXPORT highs-targets
+    install(TARGETS libhighs EXPORT HighsConfig
         LIBRARY
         ARCHIVE
         RUNTIME
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/highs)
+    export(
+      TARGETS libhighs
+      FILE "${CMAKE_CURRENT_BINARY_DIR}/HighsTargets.cmake"
+      NAMESPACE Highs::
+    )
+    install(
+      EXPORT HighsConfig
+      DESTINATION share/Highs/cmake
+      NAMESPACE Highs::
+    )
     
     
 endif()
