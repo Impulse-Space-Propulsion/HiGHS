@@ -217,7 +217,7 @@ if (NOT FAST_BUILD)
             COMMAND ${GIT} describe --always --dirty
             WORKING_DIRECTORY ${HIGHS_SOURCE_DIR}
             OUTPUT_VARIABLE GITHASH OUTPUT_STRIP_TRAILING_WHITESPACE)
-        string(REGEX REPLACE "^.*-g" "" GITHASH ${GITHASH})
+        #string(REGEX REPLACE "^.*-g" "" GITHASH ${GITHASH})
     else()
         set(GITHASH "n/a")
     endif()
