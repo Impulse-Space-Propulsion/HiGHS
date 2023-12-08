@@ -387,7 +387,9 @@ else(FAST_BUILD)
            experience any issues please let us know via email or on GitHub.")
     
     option(EXP "Experimental mode: run unit tests with doctest." OFF)
-    
+   
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdata-sections -ffunction-sections")
+ 
     if(CMAKE_BUILD_TYPE STREQUAL RELEASE)
         set(HiGHSRELEASE ON)
     endif()
